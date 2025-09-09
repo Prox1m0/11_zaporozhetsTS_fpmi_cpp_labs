@@ -9,8 +9,11 @@
 int main(){
     int n, m, min, max;
     
-    std::cout << "Введите n и m: ";
-    std::cin >> n >> m;
+    std::cout << "Enter n и m: ";
+    if(!(std::cin >> n >> m)){
+        std::cout << "Error!\n";
+        std::exit(1);
+    }
     
     if (n < m){
         min = n;

@@ -12,15 +12,22 @@ int main(){
     float sum, mid;
     sum = 0;
     
-    std::cout << "Введите количество чисел последовательности: ";
-    std::cin >> num;
+    std::cout << "Enter the lenght of sequence: ";
+    if(!(std::cin >> num) || (num <= 0)){
+        std::cout << "Error!\n";
+        std::exit(1);
+    }
     
     float arr[num];
     float min, max;
     
     for (int i = 0; i < num; i++){
         std::cout << i + 1<< ". ";
-        std::cin >> arr[i];
+        
+        if(!(std::cin >> arr[i])){
+            std::cout << "Error!";
+            std::exit(1);
+        }
     }
     for (int i = 0; i <= num; i++){
         sum += arr[i];
@@ -32,7 +39,7 @@ int main(){
     min = arr[0];
     max = arr[num-1];
     
-    std::cout << "Среднее арифметическое: " << mid << "\n";
-    std::cout << "Минимальное значение: " << min << "\n";
-    std::cout << "Максимальное значение: " << max << "\n";
+    std::cout << "Arithmetic mean: " << mid << "\n";
+    std::cout << "Max: " << min << "\n";
+    std::cout << "Min: " << max << "\n";
 }

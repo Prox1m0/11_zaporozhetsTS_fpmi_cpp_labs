@@ -10,12 +10,15 @@ int main(){
     int n, sum1, sum2, half;
     sum1 = 0;
     sum2 = 0;
-    std::cout << "Введите 6-значное число: ";
+    
+    std::cout << "Enter 6-digits number: ";
     std::cin >> n;
-    while (std::to_string(n).length() != 6){
-        std::cout << "Введите 6-значное число: ";
-        std::cin >> n;
+    
+    if (std::to_string(n).length() != 6){
+        std::cout << "Error!\n";
+        std::exit(1);
     }
+    
     half = n / 1000;
     for (int i = 0; i < 3; i++){
         sum1 += half % 10;
@@ -25,10 +28,10 @@ int main(){
         n /= 10;
     }
     if (sum1 == sum2){
-        std::cout << "Счастливое число" << "\n";
+        std::cout << "Lucky number" << "\n";
     }
     else{
-        std::cout << "Несчастливое число" << "\n";
+        std::cout << "Unlucky number" << "\n";
     }
 }
 

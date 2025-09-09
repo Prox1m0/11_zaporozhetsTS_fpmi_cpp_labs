@@ -11,12 +11,15 @@ int main(){
     start = 1;
     sum = 0;
     
-    std::cout << "Введите n: ";
-    std::cin >> n;
+    std::cout << "Enter n: ";
+    if(!(std::cin >> n) || (n < 0)){
+        std::cout << "Error!\n";
+        std::exit(1);
+    }
     
     for (int i = 0; i < n; i++){
         sum += start;
         start += 2;
     }
-    std::cout << "Сумма первых n нечетных чисел равна: " << sum << '\n';
+    std::cout << "Sum of first n odd numbers: " << sum << '\n';
 }

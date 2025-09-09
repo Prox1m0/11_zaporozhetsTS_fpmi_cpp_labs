@@ -12,15 +12,13 @@ int main() {
     int sumEven = 0;
     int productOdd = 1;
     
-    std::cout << "Введите значение n: ";
-    std::cin >> n;
+    std::cout << "Enter n: ";
     
-    if (n <= 0) {
-        std::cout << "n должно быть положительным числом!" << std::endl;
-        return 1;
+    if (!(std::cin >> n) || (n <= 0)) {
+        std::cout << "Error!\n" << std::endl;
+        std::exit(1);
     }
     
-    // Обработка чисел от 1 до n
     for (int i = 1; i <= n; i++) {
         if (i % 2 == 0) {
             sumEven += i;
@@ -31,8 +29,8 @@ int main() {
     }
     
 
-    std::cout << "Сумма всех четных чисел от 1 до " << n << ": " << sumEven << std::endl;
-    std::cout << "Произведение всех нечетных чисел от 1 до " << n << ": " << productOdd << std::endl;
+    std::cout << "Sum of even from 1 to " << n << ": " << sumEven << std::endl;
+    std::cout << "Product of odd from 1 to " << n << ": " << productOdd << std::endl;
     
     return 0;
 }
