@@ -6,34 +6,33 @@
 //
 #include <iostream>
 #include <algorithm>
-using namespace std;
 
 int main(){
     int num;
-    double sum, mid;
+    float sum, mid;
     sum = 0;
     
-    cout << "Введите количество чисел последовательности: ";
-    cin >> num;
+    std::cout << "Введите количество чисел последовательности: ";
+    std::cin >> num;
     
-    double arr[num];
-    double min, max;
+    float arr[num];
+    float min, max;
     
     for (int i = 0; i < num; i++){
-        cout << i + 1<< ". ";
-        cin >> arr[i];
+        std::cout << i + 1<< ". ";
+        std::cin >> arr[i];
     }
     for (int i = 0; i <= num; i++){
         sum += arr[i];
     }
     
-    mid = double (sum / num);
+    mid = float (sum / num);
     
-    sort(arr, arr + num);
+    std::sort(arr, arr + num);
     min = arr[0];
     max = arr[num-1];
     
-    cout << "Среднее арифметическое: " << mid << "\n";
-    cout << "Минимальное значение: " << min << "\n";
-    cout << "Максимальное значение: " << max << "\n";
+    std::cout << "Среднее арифметическое: " << mid << "\n";
+    std::cout << "Минимальное значение: " << min << "\n";
+    std::cout << "Максимальное значение: " << max << "\n";
 }

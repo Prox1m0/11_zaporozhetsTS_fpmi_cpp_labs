@@ -5,18 +5,18 @@
 //  Created by Taras Zaporozhets on 4.09.25.
 //
 #include <iostream>
-using namespace std;
+
 
 int main() {
     int n;
     int sumEven = 0;
-    long productOdd = 1;
+    int productOdd = 1;
     
-    cout << "Введите значение n: ";
-    cin >> n;
+    std::cout << "Введите значение n: ";
+    std::cin >> n;
     
     if (n <= 0) {
-        cout << "n должно быть положительным числом!" << endl;
+        std::cout << "n должно быть положительным числом!" << std::endl;
         return 1;
     }
     
@@ -31,8 +31,8 @@ int main() {
     }
     
 
-    cout << "Сумма всех четных чисел от 1 до " << n << ": " << sumEven << endl;
-    cout << "Произведение всех нечетных чисел от 1 до " << n << ": " << productOdd << endl;
+    std::cout << "Сумма всех четных чисел от 1 до " << n << ": " << sumEven << std::endl;
+    std::cout << "Произведение всех нечетных чисел от 1 до " << n << ": " << productOdd << std::endl;
     
     return 0;
 }

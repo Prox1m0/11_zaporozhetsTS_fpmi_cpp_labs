@@ -5,17 +5,16 @@
 //  Created by Taras Zaporozhets on 4.09.25.
 //
 #include <iostream>
-using namespace std;
 
 int main(){
     int n, sum1, sum2, half;
     sum1 = 0;
     sum2 = 0;
-    cout << "Введите 6-значное число: ";
-    cin >> n;
-    while (to_string(n).length() != 6){
-        cout << "Введите 6-значное число: ";
-        cin >> n;
+    std::cout << "Введите 6-значное число: ";
+    std::cin >> n;
+    while (std::to_string(n).length() != 6){
+        std::cout << "Введите 6-значное число: ";
+        std::cin >> n;
     }
     half = n / 1000;
     for (int i = 0; i < 3; i++){
@@ -26,10 +25,10 @@ int main(){
         n /= 10;
     }
     if (sum1 == sum2){
-        cout << "Счастливое число" << "\n";
+        std::cout << "Счастливое число" << "\n";
     }
     else{
-        cout << "Несчастливое число" << "\n";
+        std::cout << "Несчастливое число" << "\n";
     }
 }
 
