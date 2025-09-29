@@ -64,7 +64,8 @@ void transform(double new_arr[], int size, int P){
 }
 
 int main(){
-    double arr[100], p;
+    const int max_size = 100;
+    double arr[max_size], p;
     int n, count = 0, sum = 0;
     char option;
     
