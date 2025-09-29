@@ -2,6 +2,10 @@
 
 bool is_palindrome(int x){
 
+    if (x < 0){
+        return false;
+    }
+
     int original = x;
     int reversed_x = 0;
 
@@ -18,9 +22,13 @@ int main(){
     int a,b;
 
     std::cout << "Enter a, b: ";
-    if(!(std::cin >> a >> b)){
-        
+    if(!(std::cin >> a >> b)){     
         std::cout << "Error!";
+        std::exit(1);
+    }
+
+     if (a > b) {
+        std::cout << "Error: a should be less or equal to b";
         std::exit(1);
     }
 

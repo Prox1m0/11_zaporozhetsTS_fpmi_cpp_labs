@@ -26,6 +26,11 @@ int main(){
         std::exit(1);
     }
     
+    if (a > b) {
+        std::cout << "Error: a should be less or equal to b";
+        std::exit(1);
+    }
+
     for (int i = a; i <= b; i++){
         if (std::to_string(i) == to_reverse(i)){
             std::cout << i << " ";
