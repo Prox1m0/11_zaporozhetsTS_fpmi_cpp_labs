@@ -70,7 +70,7 @@ int main(){
     char option;
     
     std::cout << "Enter size of array <= 100: ";
-    if (!(std::cin >> n) || n <= 0 || n > 100){
+    if (!(std::cin >> n) || n <= 0 || n > max_size){
         std::cout << "Incorrect input!\n";
         std::exit(1);
     }
