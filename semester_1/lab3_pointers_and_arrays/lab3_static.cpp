@@ -48,6 +48,7 @@ void hand(double hand_arr[], int size){
     
 }
 
+//функция преобразования массива
 void transform(double new_arr[], int size, int P){
     
     int start = 0;
@@ -60,6 +61,13 @@ void transform(double new_arr[], int size, int P){
             new_arr[start] = temp;
             start++;
         }
+    }
+}
+
+//функция вывода массива
+void print_array(double p_arr[], int size){
+    for (int i = 0; i < size; i++){
+        std::cout << p_arr[i] << " ";
     }
 }
 
@@ -119,16 +127,14 @@ int main(){
     
     //преобразовние массива
     std::cout << "Array before tranformation:\n";
-    for (int i = 0; i < n; i++){
-        std::cout << arr[i] << " ";
-    }
     
+    print_array(arr ,n);
+
     transform(arr, n, p);
     
     std::cout << "\nArray after tranformation:\n";
-    for (int i = 0; i < n; i++){
-        std::cout << arr[i] << " ";
-    }
+    
+    print_array(arr, n);
     
     std::cout << "\n";
     

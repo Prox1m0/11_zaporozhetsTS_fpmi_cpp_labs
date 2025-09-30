@@ -19,7 +19,7 @@ void random(int* random_arr, int size){
     std::cout << "Enter the range of random: ";
     
     if (!(std::cin >> lower_limit >> upper_limit) || lower_limit > upper_limit){
-        std::cout << "Incorrect input! 1st number must be greater than 2nd.\n";
+        std::cout << "Incorrect input! 1st integer must be lower than 2nd.\n";
         
         delete [] random_arr;
         std::exit(1);
@@ -52,6 +52,7 @@ void hand(int* hand_arr, int size){
     
 }
 
+//функция преобразования массива
 void transform(int* new_arr, int size){
     
     int start = 0;
@@ -68,6 +69,13 @@ void transform(int* new_arr, int size){
             }
             start++;
         }
+    }
+}
+
+//функция вывода массива
+void print_array(int* p_arr, int size){
+    for (int i = 0; i < size; i++){
+        std::cout << p_arr[i] << " ";
     }
 }
 
@@ -127,17 +135,13 @@ int main(){
     //преобразование массива
     std::cout << "\nArray before transformation: ";
     
-    for (int i = 0; i < n; i++){
-        std::cout << arr[i] << " ";
-    }
+    print_array(arr, n);
     
     transform(arr, n);
     
     std::cout << "\nArray after trnsformation: ";
     
-    for (int i = 0; i < n; i++){
-        std::cout << arr[i] << " ";
-    }
+    print_array(arr, n);
     
     std::cout << "\n";
     
