@@ -14,7 +14,7 @@
 //функция заполнения массива рандомными числами
 void random(double random_arr[], int size){
     
-    int lower_limit, upper_limit;
+    double lower_limit, upper_limit;
     
     std::cout << "Enter the range of random: ";
     
