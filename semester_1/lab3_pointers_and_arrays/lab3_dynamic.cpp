@@ -19,7 +19,7 @@ void random(int* random_arr, int size){
     std::cout << "Enter the range of random: ";
     
     if (!(std::cin >> lower_limit >> upper_limit) || lower_limit > upper_limit){
-        std::cout << "Incorrect input!\n";
+        std::cout << "Incorrect input! 1st number must be greater than 2nd.\n";
         
         delete [] random_arr;
         std::exit(1);
@@ -43,7 +43,7 @@ void hand(int* hand_arr, int size){
     
     for (int i = 0; i < size; i++){
         if (!(std::cin >> hand_arr[i])){
-            std::cout << "Incorrect Input!\n";
+            std::cout << "Incorrect Input! Elements must be integer!\n";
             
             delete [] hand_arr;
             std::exit(1);
@@ -78,7 +78,7 @@ int main(){
     
     std::cout << "Enter the size of array: ";
     if(!(std::cin >> n) || n <= 0){
-        std::cout << "Incorrect Input!\n";
+        std::cout << "Incorrect Input! Size must be > 0!\n";
         std::exit(1);
     }
     
@@ -96,7 +96,7 @@ int main(){
             random(arr, n);
             break;
         default:
-            std::cout << "Incorrect option input!\n";
+            std::cout << "Incorrect option input! (Only h/r).\n";
             
             delete [] arr;
             std::exit(1);
