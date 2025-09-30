@@ -19,7 +19,7 @@ void random(double random_arr[], int size){
     std::cout << "Enter the range of random: ";
     
     if (!(std::cin >> lower_limit >> upper_limit) || lower_limit > upper_limit){
-        std::cout << "Incorrect input! 1st number must be greater than 2nd.\n";
+        std::cout << "Incorrect input! 1st number must be lower than 2nd.\n";
         std::exit(1);
     }
     
