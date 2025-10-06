@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <random>
+#include <cmath>
 
 //функция заполнения массива рандомными числами
 void random(int* random_arr, int size){
@@ -95,6 +96,8 @@ int main(){
     std::cout << "Choose Hand Input or Random Input (h/r): ";
     std::cin >> option;
     
+    std::cin.ignore();
+
     //обработка выбора ввода
     switch (option) {
         case 'h':
@@ -124,10 +127,16 @@ int main(){
     std::cout << "Element with minimal absolute value: " << value  << " (abs = " << min << ")\n";
     
     //задание 2 с суммой всех элементов после последнего нулевого
-    for (int i = 0; i < n; i++){
-        sum += arr[i];
-        if (arr[i] == 0){
-            sum = 0;
+    int last_zero_index = -1;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == 0) {
+            last_zero_index = i;
+        }
+    }   
+
+    if (last_zero_index != -1) {
+        for (int i = last_zero_index + 1; i < n; i++) {
+            sum += arr[i];
         }
     }
     std::cout << "Sum of all elements after the last 0:  " << sum;
@@ -139,7 +148,7 @@ int main(){
     
     transform(arr, n);
     
-    std::cout << "\nArray after trnsformation: ";
+    std::cout << "\nArray after transformation: ";
     
     print_array(arr, n);
     

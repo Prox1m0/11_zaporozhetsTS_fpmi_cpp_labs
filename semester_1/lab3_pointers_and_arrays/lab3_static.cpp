@@ -86,6 +86,8 @@ int main(){
     std::cout << "Choose Hand Input or Random Input (h/r): ";
     std::cin >> option;
     
+    std::cin.ignore();
+
     //обработка выбора ввода
     switch (option) {
         case 'h':
@@ -116,23 +118,28 @@ int main(){
     std::cout << count << "\n";
     
     //задание 2 (сумма целых частей)
-    //считается, что при отсутствии отрицательных чисел берется сумма целых частей всех элементов массива, так как в условии про обработку такого случая ничего не сказано
-    for (int i = 0; i < n; i++){
-        sum += static_cast<int>(arr[i]);
-        if (arr[i] < 0){
-            sum = 0;
+    int last_negative_index = -1;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] < 0) {
+            last_negative_index = i;
         }
     }
-    std::cout << "Integer sum of all elemnets after the last negative: " << sum << "\n";
+
+    if (last_negative_index != -1) {
+        for (int i = last_negative_index + 1; i < n; i++) {
+            sum += static_cast<int>(std::floor(arr[i]));
+        }
+    }
+    std::cout << "Integer sum of all integer parts of elemnets after the last negative: " << sum << "\n";
     
     //преобразовние массива
-    std::cout << "Array before tranformation:\n";
+    std::cout << "Array before transformation:\n";
     
     print_array(arr ,n);
 
     transform(arr, n, p);
     
-    std::cout << "\nArray after tranformation:\n";
+    std::cout << "\nArray after transformation:\n";
     
     print_array(arr, n);
     
