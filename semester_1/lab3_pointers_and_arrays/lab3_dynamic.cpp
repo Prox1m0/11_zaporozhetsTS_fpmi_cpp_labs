@@ -73,16 +73,50 @@ void transform(int* new_arr, int size){
     }
 }
 
+//задание 1 с минимальным по модулю элементом
+int minimal_absolute_value(int* arr, int size){
+    int min = std::abs(arr[0]);
+    int value = arr[0];
+    
+    for (int i = 1; i < size; i++){
+        if (std::abs(arr[i]) < min){
+            min = std::abs(arr[i]);
+            value = arr[i];
+        }
+    }
+
+    return value;
+}
+
+//задание 2 с суммой элементов после последнего 0
+int sum_after_last_zero(int* arr, int size){
+    int sum = 0;
+    int last_zero_index = -1;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == 0) {
+            last_zero_index = i;
+        }
+    }   
+
+    if (last_zero_index != -1) {
+        for (int i = last_zero_index + 1; i < size; i++) {
+            sum += arr[i];
+        }
+    }
+    
+    return sum;
+}
+
 //функция вывода массива
-void print_array(int* p_arr, int size){
+void print_array(int* arr, int size){
     for (int i = 0; i < size; i++){
-        std::cout << p_arr[i] << " ";
+        std::cout << arr[i] << " ";
     }
 }
 
 int main(){
     
-    int n = 0, sum = 0;
+    int n = 0;
     char option;
     
     std::cout << "Enter the size of array: ";
@@ -113,45 +147,16 @@ int main(){
             std::exit(1);
     }
     
-    //задание 1 с минимальным по модулю элементом
-    int min = std::abs(arr[0]);
-    int value = arr[0];
+    std::cout << "Element with minimal absolute value: " << minimal_absolute_value(arr, n) << "\n";
+    std::cout << "Sum of all elements after the last 0:  " << sum_after_last_zero(arr, n);
     
-    for (int i = 1; i < n; i++){
-        if (std::abs(arr[i]) < min){
-            min = std::abs(arr[i]);
-            value = arr[i];
-        }
-    }
-    
-    std::cout << "Element with minimal absolute value: " << value  << " (abs = " << min << ")\n";
-    
-    //задание 2 с суммой всех элементов после последнего нулевого
-    int last_zero_index = -1;
-    for (int i = 0; i < n; i++) {
-        if (arr[i] == 0) {
-            last_zero_index = i;
-        }
-    }   
-
-    if (last_zero_index != -1) {
-        for (int i = last_zero_index + 1; i < n; i++) {
-            sum += arr[i];
-        }
-    }
-    std::cout << "Sum of all elements after the last 0:  " << sum;
-    
-    //преобразование массива
     std::cout << "\nArray before transformation: ";
-    
     print_array(arr, n);
     
     transform(arr, n);
     
-    std::cout << "\nArray after transformation: ";
-    
-    print_array(arr, n);
-    
+    std::cout << "\nArray after transformation: "; 
+    print_array(arr, n); 
     std::cout << "\n";
     
     delete []  arr;
