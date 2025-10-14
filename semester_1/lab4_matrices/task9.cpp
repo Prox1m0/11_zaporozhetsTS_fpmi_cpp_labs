@@ -7,6 +7,15 @@
 #include <iostream>
 #include <random>
 
+//функция выделения памяти и создания матрицы
+void allocate_matrix(int**& matrix, int n_rows, int n_cols){
+    matrix = new int* [n_rows];
+
+    for (int i = 0; i < n_rows; i++){
+        matrix[i] = new int [n_cols];
+    }
+}
+
 //функция удаления динамической матрицы
 void delete_arr(int** arr, int n_rows){
     if (arr == nullptr){
@@ -94,16 +103,16 @@ int counter_of_no_zeroes(int** matrix, int n_rows, int n_cols){
 }
 
 //функция поиска строки с самой длинной возрастающей последовательностью
-int row_with_longest_increasing_sequence(int** matrix, int rows, int cols) {
+int row_with_longest_increasing_sequence(int** matrix, int n_rows, int n_cols) {
     int index = -1;
     int max_length = 0;
     
-    for (int i = 0; i < rows; i++) {
+    for (int i = 0; i < n_rows; i++) {
         int current = 1;
         int max_current = 1;
         
 
-        for (int j = 1; j < cols; j++) {
+        for (int j = 1; j < n_cols; j++) {
             if (matrix[i][j] > matrix[i][j - 1]) {
                 current++;
                 
@@ -129,6 +138,8 @@ int main(){
     int rows = 0, cols = 0;
     char option;
     
+    int** mat = nullptr;
+
     std::cout << "Enter the num of rows: ";
     if (!(std::cin >> rows) || rows <= 0){
         std::cout << "Incorrect value! Must be integer > 0!\n";
@@ -141,13 +152,8 @@ int main(){
         std::exit(1);
     }
     
-    
-    int** mat = new int* [rows];
-    
-    for (int i = 0; i < rows; i++){
-        mat[i] = new int [cols];
-    }
-    
+    allocate_matrix(mat, rows, cols);
+
     std::cout << "Choose Hand Input or Random Input (h/r): ";
     std::cin >> option;
     
