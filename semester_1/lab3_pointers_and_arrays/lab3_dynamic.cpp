@@ -23,6 +23,7 @@ int read_int(){
     int value;
     if (!(std::cin >> value)) {
         std::cin.clear();
+        std::cin.ignore();
         throw std::invalid_argument("Expected integer value");
     }
     return value;
