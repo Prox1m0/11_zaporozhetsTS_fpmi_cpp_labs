@@ -17,6 +17,7 @@ double read_double(){
     double value;
     if (!(std::cin >> value)) {
         std::cin.clear();
+        std::cin.ignore();
         throw std::invalid_argument("Expected double value");
     }
     return value;
