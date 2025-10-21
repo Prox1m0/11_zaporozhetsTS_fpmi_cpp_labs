@@ -140,15 +140,9 @@ int main(){
     
     int** mat = nullptr;
 
-    std::cout << "Enter the num of rows: ";
-    if (!(std::cin >> rows) || rows <= 0){
+    std::cout << "Enter the num of rows and columns: ";
+    if (!(std::cin >> rows) || rows <= 0 || !(std::cin >> cols) || cols <= 0){
         std::cout << "Incorrect value! Must be integer > 0!\n";
-        std::exit(1);
-    }
-    
-    std::cout << "Enter the num of columns: ";
-    if (!(std::cin >> cols) || cols <= 0){
-        std::cout << "Incorrect value! Must integer be > 0!\n";
         std::exit(1);
     }
     
