@@ -18,6 +18,13 @@ void create_array(int*& arr, int size){
     arr = new int [size];
 }
 
+void check_array_ptr(int*& arr){
+    if (arr != nullptr) {
+        delete [] arr;
+        arr = nullptr;
+    }
+}
+
 //проверка целочисленных данных
 int read_int(){
     int value;
@@ -219,26 +226,31 @@ int main(){
         std::cout << "\n";
         
         delete []  arr;
-        return 0;
     }
     catch (const std::invalid_argument& e)
     {
         std::cout << e.what() << std::endl;
-        delete []  arr;
+        check_array_ptr(arr);
         return 1;
     }
     catch (const std::out_of_range& e)
     {
         std::cout << e.what() << std::endl;
-        delete []  arr;
+        check_array_ptr(arr);
+        return 1;
+    }
+    catch (const std::bad_alloc& e)
+    {
+        std::cout << e.what() << std::endl;
+        check_array_ptr(arr);
         return 1;
     }
     catch (...)
     {
         std::cout << "Unknown error" << std::endl;
-        delete []  arr;
+        check_array_ptr(arr);
         return 1;
     }  
-
+    return 0;
 }
 

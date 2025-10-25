@@ -225,4 +225,5 @@ int main(){
         std::cout << "Unknown error" << std::endl;
         return 1;
     }
+    return 0;
 }
