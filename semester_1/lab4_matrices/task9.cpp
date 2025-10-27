@@ -13,6 +13,7 @@ int read_int(){
     int value;
     if (!(std::cin >> value)) {
         std::cin.clear();
+        std::cin.ignore();
         throw std::invalid_argument("Expected integer value");
     }
     return value;
@@ -39,13 +40,16 @@ void allocate_matrix(int**& matrix, int n_rows, int n_cols){
 }
 
 //функция удаления динамической матрицы
-void delete_arr(int** matrix, int n_rows){
+void delete_mat(int** matrix, int n_rows){
     if (matrix == nullptr){
-        throw std::invalid_argument("Null pointer is given to delete_arr");
+        return;
     }
     
     for (size_t i = 0; i < n_rows; i++){
-        delete [] matrix[i];
+        if (matrix[i] != nullptr){
+            delete [] matrix[i];
+            matrix[i] = nullptr;
+        } 
     }
     delete [] matrix;
 }
@@ -55,6 +59,7 @@ void fill_manual(int** matrix, int n_rows, int n_cols){
     if (matrix == nullptr) {
         throw std::invalid_argument("Null pointer passed to fill_manual");
     }
+    std::cout << "Enter the elements of matrix: ";
     for (size_t i = 0; i < n_rows; i++){
         for (size_t j = 0; j < n_cols; j++){
             matrix[i][j] = read_int();
@@ -162,16 +167,15 @@ int row_with_longest_increasing_sequence(int** matrix, int n_rows, int n_cols) {
     }
     
     int index = -1;
-    int max_length = 0;
+    int max_length = 1;
     
     for (size_t i = 0; i < n_rows; i++) {
         int current = 1;
-        int max_current = 1;
+        int max_current = 0;
 
         for (size_t j = 1; j < n_cols; j++) {
             if (matrix[i][j] > matrix[i][j - 1]) {
                 current++;
-                
                 if (current > max_current) {
                     max_current = current;
                 }
@@ -185,7 +189,16 @@ int row_with_longest_increasing_sequence(int** matrix, int n_rows, int n_cols) {
             index = i;
         }
     }
-    
+    /*Если считать, что последовательность длины 1 - 
+    это валидная возрастающая последовательность, то
+    в этом месте исключение не выбрасываем, а просто
+    возвращаем индекс первой строки. Но если длина 1
+    не валидная, то исключение сообщает пользователю,
+    что задача не может быть выполнена
+    */
+    if (max_length == 1){
+        throw std::runtime_error("All the sequences have length 1");
+    }
     return index;
 }
 
@@ -212,28 +225,40 @@ int main(){
         print_matrix(mat, rows, cols);
         
         std::cout << "Count of columns with no zeroes: " << counter_of_no_zeroes(mat, rows, cols) << "\n";
-        std::cout << "Number of the row with the longest increasing sequence: " << row_with_longest_increasing_sequence(mat, rows, cols) << "\n";
-        
-        delete_arr(mat, rows);
+        try{
+            std::cout << "Number of the row with the longest increasing sequence: " << row_with_longest_increasing_sequence(mat, rows, cols) << "\n";
+        }
+        catch (const std::runtime_error& e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        delete_mat(mat, rows);
+        mat = nullptr;
     
-        return 0;
     }
     catch (const std::invalid_argument& e)
     {
         std::cout << e.what() << std::endl;
-        delete_arr(mat, rows);
+        delete_mat(mat, rows);
         return 1;
     }
     catch (const std::out_of_range& e)
     {
         std::cout << e.what() << std::endl;
-        delete_arr(mat, rows);
+        delete_mat(mat, rows);
+        return 1;
+    }
+    catch (const std::bad_alloc& e)
+    {
+        std::cout << e.what() << std::endl;
+        delete_mat(mat, rows);
         return 1;
     }
     catch (...)
     {
         std::cout << "Unknown error" << std::endl;
-        delete_arr(mat, rows);
+        delete_mat(mat, rows);
         return 1;
     } 
+    return 0;
 }
