@@ -14,11 +14,11 @@ Vector::Vector(std::initializer_list<int> list) : size_(list.size()), capacity_(
     }
 }
 
-Vector::Vector(const Vector& other) : size_(other.size_), capacity_(other.capacity_), arr_(new int [size_]) {
+Vector::Vector(const Vector& other) : size_(other.size_), capacity_(other.capacity_), arr_(nullptr) {
+    arr_ = new int[capacity_];
     for (size_t i = 0; i < size_; i++) {
         arr_[i] = other.arr_[i];
     }
-    //std::copy(other.arr_, other.arr_ + size, arr_);
 }
 
 Vector::~Vector() {
@@ -54,7 +54,7 @@ void Vector::PushBack(int value){
 }
 
 void Vector::PopBack(){
-    if (size_== 0){
+    if (size_ == 0){
         throw std::out_of_range("Vector is empty!");
     }
     size_--;
@@ -102,14 +102,8 @@ Vector& Vector::operator=(const Vector& other){
         if (this == &other){
             return *this;
         }
-        size_ = other.size_;
-        capacity_ = other.capacity_;
-        delete [] arr_;
-        arr_ = new int[size_];
-        for (size_t i = 0; i < size_; i++) {
-            arr_[i] = other.arr_[i];
-        }
-        //std::copy(other.arr_, other.arr_ + size_, arr_);
+        Vector tmp(other);
+        Swap(tmp);
         return *this;
 }
 
