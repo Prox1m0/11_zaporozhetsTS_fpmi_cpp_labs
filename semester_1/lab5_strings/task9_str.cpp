@@ -24,7 +24,7 @@ void read_string(std::string& str){
 bool is_lower_vowel(char ch){
     if (ch < 'a' || ch > 'z') return false;
     
-    std::string lower_vowels{"aeiouy"};
+    std::string lower_vowels{"aeiou"};
     return lower_vowels.find(ch) != std::string::npos;
 }
 
@@ -39,7 +39,7 @@ void spaces_to_pluses(std::string& str){
 void toupper_vowels(std::string& str){
     for (size_t i = 0; i < str.size(); ++i){
         if (is_lower_vowel(str[i])){
-            str[i] = std::toupper(str[i]);
+            str[i] = static_cast<char>(std::toupper(static_cast<unsigned char>(str[i])));
         }
     }
 }
