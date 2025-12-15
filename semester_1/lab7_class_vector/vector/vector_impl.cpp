@@ -1,6 +1,6 @@
 #include "vector_impl.h"
 
-Vector::Vector() {}
+Vector::Vector() = default;
 
 Vector::Vector(size_t size) : size_(size), capacity_(size), arr_(new int [size_]) {
     for (size_t i = 0; i < size_; i++) {
@@ -26,11 +26,9 @@ Vector::~Vector() {
 }
 
 void Vector::Swap(Vector& other) {
-    if(this != &other){
-        std::swap(arr_, other.arr_);
-        std::swap(size_, other.size_);
-        std::swap(capacity_, other.capacity_);
-    }
+    std::swap(arr_, other.arr_);
+    std::swap(size_, other.size_);
+    std::swap(capacity_, other.capacity_);
 }
 
 void Vector::PushBack(int value){
