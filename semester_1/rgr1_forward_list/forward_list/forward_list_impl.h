@@ -2,6 +2,10 @@
 
 #include <iterator>
 #include <iostream>
+#include <initializer_list>
+#include <cstdint>
+#include <exception>
+#include <algorithm>
 
 class ForwardList {
 
@@ -40,7 +44,7 @@ public:
         }
 
         bool operator==(const ForwardListIterator& other) const {
-            // your code goes here
+            return position_ == other.position_;
         }
 
         bool operator!=(const ForwardListIterator& other) const {
@@ -62,20 +66,20 @@ public:
     // methods for "ranged-based for loop"
     // 1) non-const version
     ForwardListIterator begin() {
-        // your code goes here
+        return ForwardListIterator(head_);
     }
     ForwardListIterator end() {
-        // your code goes here
+        return ForwardListIterator(nullptr);
     }
 
     // 2) const version
     // TODO: think about return type
     // (is it exactly ForwardListIterator?)
     ForwardListIterator begin() const {
-        // your code goes here
+        return ForwardListIterator(head_);
     }
     ForwardListIterator end() const {
-        // your code goes here
+        return ForwardListIterator(nullptr);
     }
 
     // default constructor
@@ -95,6 +99,9 @@ public:
 
     // destructor
     ~ForwardList();
+
+    //added to copy-and-swap in operator =
+    void Swap(ForwardList& other);
 
     // insert new element on the top of the list
     void PushFront(int32_t value);
@@ -125,5 +132,6 @@ public:
     size_t Size() const;
 
 private:
-    // your code goes here
+    Node* head_;
+    size_t size_;
 };
