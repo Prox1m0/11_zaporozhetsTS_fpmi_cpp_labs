@@ -10,9 +10,7 @@ bool is_empty(std::ifstream& file){
 std::string get_symbols(){
     std::string symbols;
     std::cout << "Enter symbols: ";
-    if (!(std::cin >> symbols)){
-        std::cin.clear();
-        std::cin.ignore();
+    if ((!std::getline(std::cin, symbols)) || symbols.empty()){
         throw ("Error! Cannot read data!");
     }
     return symbols;
@@ -44,7 +42,7 @@ std::vector<std::string> read_lines_from_file(const std::string& filename){
     }
     std::vector<std::string> lines;
     std::string line; 
-    while (getline(in, line)){
+    while (std::getline(in, line)){
         lines.push_back(line);
     }
     in.close();
@@ -69,11 +67,10 @@ std::vector<std::string> find_lines_with_max_length(const std::vector<std::strin
         int curr_length = process_line(lines[i], syms);
         if (curr_length == max_length){
             if (count >= 10){
-                return res;
-            } else{
-                count++;
-                res.push_back(lines[i]);
-            }
+                break;
+            } 
+            count++;
+            res.push_back(lines[i]);
         }
     }
     return res;
