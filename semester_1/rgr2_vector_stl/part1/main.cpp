@@ -66,22 +66,20 @@ void add_sum(std::vector<int>& vector, int start, int end){
     }
 }
 
-std::pair<int, int> get_min_max(const std::vector<int>& vector){
+void get_min_max(const std::vector<int>& vector, int& min, int& max){
     if (vector.empty()) {
         throw std::invalid_argument("Vector is empty");
     }
-    int max = vector[0];
-    int min = vector[0];
+    max = vector[0];
+    min = vector[0];
+
+    min = vector[0];
+    max = vector[0];
 
     for (size_t i = 1; i < vector.size(); ++i) {
-        if (vector[i] < min){
-            min = vector[i];
-        }
-        if (vector[i] > max){
-            max = vector[i];
-        }
+        if (vector[i] < min) min = vector[i];
+        if (vector[i] > max) max = vector[i];
     }
-    return {min, max};
 }
 
 bool is_abs_even(int number){
@@ -89,9 +87,12 @@ bool is_abs_even(int number){
 }
 
 void change_evens(std::vector<int>& vector){
+    if (vector.empty()) return;
+    
+    int min, max;
     int diff = 0;
-    std::pair<int, int> min_max = get_min_max(vector);
-    diff = min_max.second - min_max.first;
+    get_min_max(vector, min, max);
+    diff = max - min;
 
     for (size_t i = 0; i < vector.size(); ++i) {
         if (is_abs_even(vector[i])){
@@ -101,13 +102,20 @@ void change_evens(std::vector<int>& vector){
 }
 
 void delete_similars(std::vector<int>& vector){
-    std::set<int> seen{};
+    std::vector<int> seen_abs_vals{};
     for (auto it = vector.begin(); it != vector.end(); ) {
         int abs_value = std::abs(*it);
-        if (seen.find(abs_value) != seen.end()) {
-            it = vector.erase(it); 
+        bool found = false;
+        for (size_t i = 0; i < seen_abs_vals.size(); ++i) {
+            if (seen_abs_vals[i] == abs_value) {
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            it = vector.erase(it);
         } else {
-            seen.insert(abs_value);
+            seen_abs_vals.push_back(abs_value);
             ++it;
         }
     }
