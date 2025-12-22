@@ -1,0 +1,9 @@
+82;War and Peace;1869;Tolstoy Leo Nikolaevich
+10;The_Master_and_Margarita;1966;Bulgakov Mikhail Afanasievich|Erdman Sergei Alexandrovich
+55;Crime_and_Punishment;1866;Dostoevsky Fyodor Mikhailovich
+18;Dead_Souls;1842;Gogol Nikolai Vasilievich
+72;Solaris;1961;Lem Stanislaw Herman
+91;Brave_New_World;1932;Huxley Aldous Leonard
+33;Fahrenheit 451;1953;Bradbury Ray Douglas
+27;The_Little_Prince;1943;de_Saint-Exupery Antoine Marie
+89;War and Peace;1920;Sergey Ivanovich Mayakovskiy
